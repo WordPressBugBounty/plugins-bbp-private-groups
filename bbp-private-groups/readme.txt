@@ -2,8 +2,8 @@
 Contributors: robin-w
 Tags: forum, bbpress, bbp, private, groups
 Donate link: http://www.rewweb.co.uk/donate
-Tested up to: 6.6
-Stable tag: 3.9.6
+Tested up to: 6.7
+Stable tag: 3.9.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -160,6 +160,8 @@ A shortcode to list users either across all groups or per group
 
 
 == Changelog ==
+
+3.9.7 Amendment for topic subscriptions to correctly show topics a user is subscribed to.
 
 3.9.6 Amendments to the processing of topics and replies in profiles to prevent issues for large sites
 

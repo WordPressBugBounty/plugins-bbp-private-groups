@@ -1,13 +1,11 @@
 <?php
-//version 1.9.2 fixed private groups forums for subscriptions 
+//version 1.9.2 fixed private groups forums for subscriptions //version 3.9.7 fixed private groups topics for subscriptions
 
 add_filter ('bbp_before_has_topics_parse_args', 'pg_has_topics') ;
 
 function pg_has_topics( $args = '' ) {
-	//check if being called by subscriptions and if so skip filtering (as you can only subscribe to forums you can already see)
-	if(isset($args['post__in']) ){
-	return $args ;
-	}
+	//for forums, check if being called by subscriptions and if so skip filtering (as you can only subscribe to forums you can already see)		if(isset($args['post__in']) ){	return $args ;	}		/*then fix for topic subscriptions - logic here is that if a user has subscribed to a topic, then he is allowed to view that topic, so we 	don't need to filter.  So in \bbpress\includes\users\engagements.php we have the function bbp_get_user_topic_subscriptions whch is used in	\bbpress\bbpress\templates\default\bbpress\user-subscriptions.php to get the topic subscriptions.  This sets up the $args for bbp_has_topics	which includes the meta args below, so we test for this, and then we know we are in a subscription call.	*/	
+	if(isset($args['meta_query'][0]['key'] )){			if ($args['meta_query'][0]['key']  == '_bbp_subscription')			return $args ;	}		
 	$user_id2 = false;
     if (isset($args['author'])) {
         $user_id2 = bbp_get_user_id($args['author']);
